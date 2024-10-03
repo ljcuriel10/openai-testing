@@ -28,6 +28,8 @@ app.post('/completion', async (req, res) => {
       res.send(completion.choices[0])
 })
 
+/// Add image generator
+
 
 
 
