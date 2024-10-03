@@ -20,7 +20,7 @@ app.post('/completion', async (req, res) => {
                 content: "You are a helpful assistant." },
             {
                 role: "user",
-                content: `${text}`,
+                content: text,
             },
         ],
       });
@@ -30,7 +30,16 @@ app.post('/completion', async (req, res) => {
 
 /// Add image generator
 
+app.post('/image', async (req, res) => {
+    const text = req.body.text
+    const image = await openai.images.generate({
+        model: 'dall-e-3',
+        prompt: text,
+    })
 
+    console.log(image.data[0].url)
+    res.send(image.data[0])
+})
 
 
 app.listen(PORT, () => {

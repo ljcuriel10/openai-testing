@@ -7,10 +7,11 @@ function App() {
   const [text, setText] = useState('')
   const [response, setResponse] = useState(null)
   const [thinking, setThinking] = useState(false)
+  const [img, setImg] = useState(null)
 
   const getCompletion = async () => {
     setThinking(true)
-   const response = await fetch('http://localhost:8000/completion', {
+   const response = await fetch('http://localhost:8000/image', {
         method: 'POST',
         body: JSON.stringify({text}),
         headers: {
@@ -19,7 +20,7 @@ function App() {
     });
     const data = await response.json();
     setThinking(false)
-    setResponse(data.message.content);
+    setImg(data.url);
     setText('')
   }
 
@@ -27,7 +28,7 @@ function App() {
     <div className="App d-flex">
       <section className='main container d-flex flex-column justify-content-between align-items-center text-center w-75 min-vh-100'>
         <h1 className='text-white m-4'>ScoobyGPT</h1>
-         <Chatbot response={response} thinking={thinking} />
+         <Chatbot response={response} thinking={thinking} img={img} />
         <div className='bottom-section d-flex flex-column justify-content-center align-items-center text-center my-3 w-100'>
           <Chat setPrompt={setText} getCompletion={getCompletion} text={text} />
           <p className='text-secondary py-2'>Created By Luis Curiel</p>

@@ -1,7 +1,7 @@
 import Markdown from "react-markdown"
 
-const Chatbot = ({response, thinking}) => {
-
+const Chatbot = ({response, thinking, img}) => {
+    console.log(img)
     const aiThinking = (
         <div>
             <strong role="status">Thinking... </strong>
@@ -11,8 +11,9 @@ const Chatbot = ({response, thinking}) => {
    
   return (
     <div className='container border text-center h-100 py-5 my-3 bg-secondary text-white rounded shadow'>
-        {thinking ? aiThinking : 
-    <Markdown >{response}</Markdown>}
+        {/* {thinking ? aiThinking : 
+    <Markdown >{response}</Markdown>} */}
+        { thinking ? aiThinking : <img className="shadow" src={`${img}`} />}
     </div>
   )
 }
