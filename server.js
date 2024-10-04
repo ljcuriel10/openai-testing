@@ -37,7 +37,7 @@ app.post('/image', async (req, res) => {
         prompt: text,
     })
 
-    console.log(image.data[0].url)
+  
     res.send(image.data[0])
 })
 
